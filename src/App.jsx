@@ -8,7 +8,6 @@ const FlexRowWrapper = styled.div`
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;
-    outline: 1px dashed red;
     padding: 10px;
 `
 
@@ -18,7 +17,6 @@ const FlexColWrapper = styled.div`
     flex-flow: column nowrap;
     align-items: flex-start;
     justify-content: center;
-    outline: 1px dashed lightskyblue;
     padding: 10px;
 `
 

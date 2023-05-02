@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 const Icon = styled.div`
     order: 1;
-    outline: 1px dashed blue;
     width: 100px;
     img {
         width: 100%;

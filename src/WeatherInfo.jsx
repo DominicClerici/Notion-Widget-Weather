@@ -2,7 +2,6 @@ import React from "react"
 import styled from "styled-components"
 
 const LocationInfo = styled.div`
-    outline: 1px dashed orange;
     order: 1;
     max-height: fit-content(1.3em);
     p {
@@ -15,7 +14,6 @@ const LocationInfo = styled.div`
 const WeatherData = styled.div`
     order: 2;
     max-height: fit-content(3.3em);
-    outline: 1px dashed green;
     display: flex;
     align-items: flex-start;
     flex-flow: column nowrap;
