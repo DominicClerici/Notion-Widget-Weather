@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
 
 const Icon = styled.div`
     order: 1;
@@ -10,13 +10,13 @@ const Icon = styled.div`
 `
 
 export default function WeatherIcon(props) {
-  let imgSrc = 'null'
-  if(props.data != null){
-    imgSrc = props.data.weatherCode
-  }
-  return (
-    <Icon>
-        <img src={`./src/assets/${imgSrc}.png`}></img>
-    </Icon>
-  )
+    let imgSrc = "null"
+    if (props.data != null) {
+        imgSrc = props.data.weatherCode
+    }
+    return (
+        <Icon>
+            <img src={`./assets/${imgSrc}.png`}></img>
+        </Icon>
+    )
 }
