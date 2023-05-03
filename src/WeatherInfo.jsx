@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 const LocationInfo = styled.div`
     order: 1;
@@ -23,11 +23,28 @@ const WeatherData = styled.div`
         font-family: "Poppins";
         color: rgb(100,100,100);
         line-height: 1.2em;
+        
     }
     p.main {
         font-size: 1.3em !important;
         color:black !important;
     }
+`
+const loadInAnim = keyframes`
+    0%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
+`
+const NonMain = styled.div`
+    margin: 0px;
+    font-size: 1em;
+    font-family: "Poppins";
+    color: rgb(100, 100, 100);
+    line-height: 1.2em;
+    animation: ${loadInAnim} 1s ease ${(props) =>  + props.del / 6}s backwards;
+    /* transition: opacity 1s ${(props) => "." + props.del / 2}s; */
 `
 
 export default function WeatherInfo(props) {
@@ -53,28 +70,36 @@ export default function WeatherInfo(props) {
         // 3600000 * hour offset, indiana 4, california 7
         let currTime = Date.now() - 3600000 * 4
         console.log(currTime)
+        let i = 1
         jsx = [
             <p className="main" key={"ct"}>
                 {props.data.currTemp} &deg;<span className="tempFormat">F</span>
             </p>,
         ]
         if (props.data.windSpeed >= 12) {
-            jsx.push(<p key={"wsp"}>{props.data.windSpeed}mph winds</p>)
+            jsx.push(<NonMain del={i} key={"wsp"}>{props.data.windSpeed}mph winds</NonMain>)
+            i++
         }
         if (props.data.chanceOfRain > 0) {
-            jsx.push(<p key={"rain"}>{props.data.chanceOfRain}% chance of rain</p>)
+            jsx.push(<NonMain del={i} key={"rain"}>{props.data.chanceOfRain}% chance of rain</NonMain>)
+            i++
         }
         if (props.data.uvIndex >= 5) {
-            jsx.push(<p key={"rain"}>{props.data.uvIndex} UV Index</p>)
+            jsx.push(<NonMain del={i} key={"rain"}>{props.data.uvIndex} UV Index</NonMain>)
+            i++
         }
         if (currTime <= props.data.sunrise) {
-            jsx.push(<p key={"sunr"}>Sunrise at {msToTime(props.data.sunrise - 3600000 * 4)}</p>)
-            jsx.push(<p key={"vis"}>{props.data.visibility}mi visibility</p>)
+            jsx.push(<NonMain del={i} key={"sunr"}>Sunrise at {msToTime(props.data.sunrise - 3600000 * 4)}</NonMain>)
+            i++
+            jsx.push(<NonMain del={i} key={"vis"}>{props.data.visibility}mi visibility</NonMain>)
+            i++
         } else if (currTime <= props.data.sunset) {
-            jsx.push(<p key={"sunr"}>Sunset at {msToTime(props.data.sunset - 3600000 * 4)}</p>)
+            jsx.push(<NonMain del={i} key={"sunr"}>Sunset at {msToTime(props.data.sunset - 3600000 * 4)}</NonMain>)
+            i++
         } else {
-            jsx.push(<p key={"sunr"}>Sunrise at {msToTime(props.data.sunrise - 3600000 * 4)}</p>)
-            jsx.push(<p key={"vis"}>{props.data.visibility}mi visibility</p>)
+            jsx.push(<NonMain del={i} key={"sunr"}>Sunrise at {msToTime(props.data.sunrise - 3600000 * 4)}</NonMain>)
+            i++
+            jsx.push(<NonMain del={i} key={"vis"}>{props.data.visibility}mi visibility</NonMain>)
         }
     } else {
         jsx = null

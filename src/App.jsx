@@ -4,11 +4,12 @@ import WeatherIcon from "./WeatherIcon"
 import WeatherInfo from "./WeatherInfo"
 
 const FlexRowWrapper = styled.div`
+    opacity: ${props => props.trans ? "1" : "0"};
+    transition: opacity 1.2s;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;
-    padding: 10px;
 `
 
 const FlexColWrapper = styled.div`
@@ -17,7 +18,7 @@ const FlexColWrapper = styled.div`
     flex-flow: column nowrap;
     align-items: flex-start;
     justify-content: center;
-    padding: 10px;
+    padding: 0px 0px 0px 10px;
 `
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
     }, [])
 
     return (
-        <FlexRowWrapper>
+        <FlexRowWrapper trans={weatherData == null ? false : true}>
             <WeatherIcon data={weatherData}></WeatherIcon>
             <FlexColWrapper>
                 <WeatherInfo data={weatherData}></WeatherInfo>
