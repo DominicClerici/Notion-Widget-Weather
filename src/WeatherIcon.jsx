@@ -16,7 +16,7 @@ export default function WeatherIcon(props) {
     }
     return (
         <Icon>
-            <img src={`./assets/${imgSrc}.png`}></img>
+            <img src={`./assets/${imgSrc}.png`} alt={"Weather Icon"}></img>
         </Icon>
     )
 }
